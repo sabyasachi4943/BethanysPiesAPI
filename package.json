@@ -1,0 +1,15 @@
+{
+  "name": "bethanyspiesapi",
+  "version": "1.0.0",
+  "description": "REST APIs for Bethanys Pie Shop",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sabyasachi Sarkar",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.13"
+  }
+}
