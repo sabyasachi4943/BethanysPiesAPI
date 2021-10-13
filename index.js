@@ -6,6 +6,9 @@ let pieRepo = require('./repos/pieRepo');
 // Use the express Router object
 let router = express.Router();
 
+// COnfigure middleware to support JSON data parsing in request object
+app.use(express.json());
+
 // synchronous type of call
 // let pies =  pieRepo.get();
 
@@ -75,6 +78,20 @@ router.get('/:id', function(req, res, next) {
     next(err);
   });
 });
+
+router.post('/', function(req, res, next) {
+  pieRepo.insert(req.body, function(data) {
+    res.status(201).json({
+      "status": 201,
+      "statusText": "Created",
+      "message": "New Pie Added.",
+      "data": data
+    });
+  }, function(err) {
+    next(err);
+  });
+});
+
 
 // Configure router so all routes are prefixed with /api/v1
 app.use('/api/', router);
