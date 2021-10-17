@@ -181,6 +181,19 @@ router.patch('/:id', function(req, res, next) {
 // Configure router so all routes are prefixed with /api/v1
 app.use('/api/', router);
 
+// COnfigure exception middleware last
+app.use(function(err, req, res, next) {
+  res.status(500).json({
+    "status": 500,
+    "statusText": "Internal Sever Error.",
+    "message": err.message,
+    "error": {
+      "code": "INTERNAL_SERVER_ERROR",
+      "message": err.message
+    }
+  });
+});
+
 // Create server to listen on port 5000
 var server = app.listen(8080, function () {
   console.log('Node server is running on http://localhost:8080..');
